@@ -1,23 +1,14 @@
 pipeline {
     agent any
+
     tools {
         maven 'jenkinsmaven'
     }
+
     stages {
         stage('Build') {
             steps {
-                echo 'Build App'
+                git 'https://github.com/spicke23/proyectosimplejunit.git'
             }
-        }
-        stage('Test') {
-            steps {
-                echo 'Test App'
-            }
-        }
-        stage('Deploy') {
-            steps {
-                echo 'Deploy App'
-            }
-        }
     }
 }
