@@ -10,5 +10,6 @@ pipeline {
             steps {
                 git 'https://github.com/spicke23/proyectosimplejunit.git'
             }
+        }
     }
 }
