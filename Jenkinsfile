@@ -9,7 +9,7 @@ pipeline {
     stages {
         stage('Build') {
             steps {
-                git branch: 'main', url: 'https://github.com/jglick/simple-maven-project-with-tests.git'
+                git branch: 'main', url: 'https://github.com/spicke23/proyectosimplejunit.git'
                 sh "mvn -Dmaven.test.failure.ignore=true clean package"
             }
 
