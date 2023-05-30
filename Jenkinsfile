@@ -3,30 +3,20 @@ pipeline {
 
     tools {
         maven 'jenkinsmaven'
+        jdk 'java-jenkins'
     }
 
     stages {
         stage('Build') {
             steps {
-                echo 'Realizando la clonacion del repo'
-                git 'https://github.com/spicke23/proyectosimplejunit.git'
-                echo 'Vamos a generar el repo'
-                sh 'mvn -Dmaven.test.failure.ignore=true clean package'
+                git branch: 'main', url: 'https://github.com/jglick/simple-maven-project-with-tests.git'
+                sh "mvn -Dmaven.test.failure.ignore=true clean package"
             }
-            post {
-                success {
-                    archiveArtifacts 'target/*.jar'
-                }
-            }
-        }
-        stage('Test') {
-            steps {
-                echo 'Ejecutando los test'
-                sh 'mvn test'
-            }
+
             post {
                 success {
                     junit '**/target/surefire-reports/TEST-*.xml'
+                    archiveArtifacts 'target/*.jar'
                 }
             }
         }
